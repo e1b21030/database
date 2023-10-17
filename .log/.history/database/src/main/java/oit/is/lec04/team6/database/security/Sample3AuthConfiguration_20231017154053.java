@@ -21,17 +21,14 @@ public class Sample3AuthConfiguration {
             .logoutUrl("/logout")
             .logoutSuccessUrl("/")) // ログアウト後に / にリダイレクト
         .authorizeHttpRequests(authz -> authz
-        .requestMatchers(AntPathRequestMatcher.antMatcher("/sample3/**"))
-        .authenticated() // /sample3/以下は認証済みである
             .requestMatchers(AntPathRequestMatcher.antMatcher("/sample4/**"))
             .authenticated() // /sample4/以下は認証済みであること
             .requestMatchers(AntPathRequestMatcher.antMatcher("/**"))
             .permitAll())// 上記以外は全員アクセス可能
-
-      
-         .csrf(csrf -> csrf
-         .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/*")))
-         
+        /*
+         * .csrf(csrf -> csrf
+         * .ignoringRequestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/*")))
+         */
         .headers(headers -> headers
          .frameOptions(frameOptions -> frameOptions
          .sameOrigin())
